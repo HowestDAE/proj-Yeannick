@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "045267fe-75c5-4ecc-b533-4debff734403": {
+      "ProjectGuid": "045267fe-75c5-4ecc-b533-4debff734403",
+      "DisplayName": "Dota2 Match History",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
