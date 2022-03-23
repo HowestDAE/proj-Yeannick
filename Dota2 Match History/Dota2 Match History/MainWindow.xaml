@@ -1,4 +1,5 @@
 ﻿<Window x:Class="Dota2_Match_History.MainWindow"
+        xmlns:vm ="clr-namespace:Dota2_Match_History.VM"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,8 +7,14 @@
         xmlns:local="clr-namespace:Dota2_Match_History"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1000" MinHeight="500" MinWidth="1000">
-   
+    <Window.DataContext>
+        <vm:MainViewModel></vm:MainViewModel>
+    </Window.DataContext>
     <Grid>
-        
+        <Frame NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
+
+        <!--Next page button-->
+        <Button VerticalAlignment="Bottom"
+                Command="{Binding SwitchPageCommand}" Content="{Binding CommandText}"/>
     </Grid>
 </Window>
