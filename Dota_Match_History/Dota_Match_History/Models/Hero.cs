@@ -19,6 +19,15 @@ namespace Dota_Match_History.Models
             {
                 int count ="npc_data_hero_".Length;
                 string HeroUrlName = Name.Remove(0, count).ToLower();
+                return $"https://steamcdn-a.akamaihd.net/apps/dota2/images/heroes/{HeroUrlName}_full.png";
+            }
+        }
+        public string HeroImageLowRes
+        {
+            get
+            {
+                int count = "npc_data_hero_".Length;
+                string HeroUrlName = Name.Remove(0, count).ToLower();
                 return $"https://steamcdn-a.akamaihd.net/apps/dota2/images/heroes/{HeroUrlName}_sb.png";
             }
         }

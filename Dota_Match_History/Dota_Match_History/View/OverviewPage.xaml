@@ -46,8 +46,13 @@
         <!--HEADER-->
         <TextBlock Text="DOTA 2 MATCH HISTORY" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" FontFamily="Palatino Linotype" Background="#792F4F4F" Foreground="#FFB22A23"></TextBlock>
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <ComboBox ItemsSource="{Binding GameModes}" SelectedItem="{Binding SelectedGameMode}" Margin="10 10 10 0" SelectedIndex="-1"/>
-            <Grid Margin="10">
+            <ComboBox ItemsSource="{Binding GameModes}" SelectedItem="{Binding SelectedGameMode}" HorizontalAlignment="Left" Width="200" SelectedIndex="0" Background="DarkSlateGray" Foreground="#FF092465" BorderBrush="#FF052B48" FontFamily="Bahnschrift Light" FontSize="16" >
+
+            </ComboBox>
+            <Grid Margin="10" >
+                <Grid.Background >
+                    <SolidColorBrush Color="Gray" Opacity="0.4"/>
+                </Grid.Background>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
@@ -55,16 +60,26 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
+                <Border BorderThickness="0 0 0 0" BorderBrush="White" Grid.Column="0">
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" Foreground="White" Text="Winning team" ></TextBlock>
+                </Border>
+                <Border BorderThickness="1 0 0 0" BorderBrush="White" Grid.Column="1">
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Foreground="White" Text="Start time"></TextBlock>
+                </Border>
+                <Border BorderThickness="1 0 0 0" BorderBrush="White" Grid.Column="2">
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" Foreground="White" Text="Duration"></TextBlock>
+                </Border>
+                <Border BorderThickness="1 0 0 0" BorderBrush="White" Grid.Column="3" >
+                    <TextBlock Grid.Column="3" HorizontalAlignment="Center" Foreground="White" Text="RADIANT"></TextBlock>
+                </Border>
+                <Border BorderThickness="1 0 0 0" BorderBrush="White" Grid.Column="4">
+                    <TextBlock Grid.Column="4" HorizontalAlignment="Center" Foreground="White" Text="DIRE"></TextBlock>
+                </Border>
 
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" Foreground="White" Text="Winning team"></TextBlock>
-                <TextBlock Grid.Column="1" HorizontalAlignment="Center" Foreground="White" Text="Start time"></TextBlock>
-                <TextBlock Grid.Column="2" HorizontalAlignment="Center" Foreground="White" Text="Duration"></TextBlock>
-                <TextBlock Grid.Column="3" HorizontalAlignment="Center" Foreground="White" Text="RADIANT"></TextBlock>
-                <TextBlock Grid.Column="4" HorizontalAlignment="Center" Foreground="White" Text="DIRE"></TextBlock>
             </Grid>
         </StackPanel>
 
-        <ListView Grid.Column="1" ItemsSource="{ Binding Matches}" Grid.Row="2" Margin="10" Height="auto"
+        <ListView Grid.Column="1" ItemsSource="{ Binding Matches}" Grid.Row="2" Margin="1" Height="auto"
 			        SelectedItem="{Binding SelectedMatchOverview}" ScrollViewer.CanContentScroll="True" HorizontalContentAlignment="Center" SelectionChanged="ListView_SelectionChanged">
             <ListView.Background >
                 <SolidColorBrush Color="Gray" Opacity="0.4"/>
@@ -73,46 +88,55 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock HorizontalAlignment="Center" Grid.Column="0" Foreground="GreenYellow" Text="{Binding radiant_win, Converter={StaticResource WinningTeamConverter}}"/>
-                        <TextBlock HorizontalAlignment="Center" Grid.Column="1" Foreground="White" Text="{Binding start_time, Converter={StaticResource UnixTimestampToDateTime}}"/>
-                        <TextBlock HorizontalAlignment="Center" Grid.Column="2" Foreground="White" Text="{Binding duration, Converter={StaticResource SecondsToDurationConverter}}"/>
+                        <Border BorderThickness="0 0 0 0" BorderBrush="White" Grid.Column="0">
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="0" Foreground="GreenYellow" Text="{Binding radiant_win, Converter={StaticResource WinningTeamConverter}}"/>
+                        </Border>
+                        <Border BorderThickness="1 0 0 0" BorderBrush="White" Grid.Column="1">
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="1" Foreground="White" Text="{Binding start_time, Converter={StaticResource UnixTimestampToDateTime}}"/>
+                        </Border>
+                        <Border BorderThickness="1 0 0 0" BorderBrush="White" Grid.Column="2">
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="2" Foreground="White" Text="{Binding duration, Converter={StaticResource SecondsToDurationConverter}}"/>
+                        </Border>
                         <!--Radiant team images-->
-                        <ListBox HorizontalAlignment="Center" Grid.Column="3" ItemsSource="{Binding RadiantTeamHeroes}" Background="Transparent" VerticalAlignment="Center" 
+                        <Border BorderThickness="1 0 0 0" BorderBrush="White" Grid.Column="3">
+                            <ListBox HorizontalAlignment="Center" Grid.Column="3" ItemsSource="{Binding RadiantTeamHeroes}" Background="Transparent" VerticalAlignment="Center" 
                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="Transparent">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel></WrapPanel>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel></WrapPanel>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
 
-                            <ListBox.ItemContainerStyle>
-                                <Style TargetType="ListBoxItem">
-                                    <Setter Property="Padding" Value="0"/>
-                                </Style>
-                            </ListBox.ItemContainerStyle>
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="Padding" Value="0"/>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
 
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="20" Height="12">
-                                        <Image Source="{Binding HeroImage, FallbackValue=http://cdn.dota2.com/apps/dota2/images/heroes/ancient_apparition_sb.png}" Stretch="UniformToFill"></Image>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                                <ListBox.ItemTemplate>
+
+                                    <DataTemplate>
+                                        <Grid Width="20" Height="16">
+                                            <Image Source="{Binding HeroImageLowRes, FallbackValue=http://cdn.dota2.com/apps/dota2/images/heroes/ancient_apparition_sb.png}" Stretch="UniformToFill"></Image>
+                                        </Grid>
+                                    </DataTemplate>
+
+                                </ListBox.ItemTemplate>
+
+                            </ListBox>
+                        </Border>
                         <!--Dire team images-->
-                        <ListBox HorizontalAlignment="Center" Grid.Column="4" ItemsSource="{Binding DireTeamHeroes}" Background="Transparent" VerticalAlignment="Center" 
+                        <Border BorderThickness="1 0 0 0" BorderBrush="White" Grid.Column="4">
+                            <ListBox HorizontalAlignment="Center" Grid.Column="4" ItemsSource="{Binding DireTeamHeroes , Mode=Default}" Background="Transparent" VerticalAlignment="Center" 
                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="Transparent">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel></WrapPanel>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
+                           
 
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
@@ -122,12 +146,18 @@
 
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Width="20" Height="12">
-                                        <Image Source="{Binding HeroImage, FallbackValue=https://steamcdn-a.akamaihd.net/apps/dota2/images/heroes/ancient_apparition_full.png}" Stretch="UniformToFill"></Image>
+                                    <Grid Width="20" Height="16">
+                                            <Image Source="{Binding HeroImageLowRes, FallbackValue=https://steamcdn-a.akamaihd.net/apps/dota2/images/heroes/ancient_apparition_sb.png}" Stretch="UniformToFill"></Image>
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
-                        </ListBox>
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel></WrapPanel>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                            </ListBox>
+                       </Border>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

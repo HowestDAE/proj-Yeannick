@@ -63,10 +63,10 @@ namespace Dota_Match_History.Repositories
             }
             return gameModesFiltered;
         }
-        // Matches
+      
         public async Task<List<MatchOverview>> GetMatchOverviews()
         {
-            // Fill the matches if the list is null
+         
             if (_matches == null)
             {
                 var assembly = Assembly.GetExecutingAssembly();
@@ -119,10 +119,10 @@ namespace Dota_Match_History.Repositories
             return matchesByMode;
         }
 
-        // Heroes
+       
         public async Task<List<Hero>> GetHeroes()
         {
-            // Fill the matches if the list is null
+            
             if (_heroes == null)
             {
                 var assembly = Assembly.GetExecutingAssembly();

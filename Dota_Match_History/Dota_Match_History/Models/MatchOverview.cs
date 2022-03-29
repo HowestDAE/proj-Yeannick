@@ -62,7 +62,7 @@ namespace Dota_Match_History.Models
             {
                 RadiantTeamHeroes.Add(otherTask[i].Result);
             }
-            for (int i = 0; i < 5; i++)
+            for (int i = 5; i < 10; i++)
             {
                 DireTeamHeroes.Add(otherTask[i].Result);
             }
